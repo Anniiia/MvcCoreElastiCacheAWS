@@ -51,11 +51,15 @@ namespace MvcCoreElastiCacheAWS.Services
             //serializamos a json la coleccion
 
             string jsonCoches = JsonConvert.SerializeObject(coches);
+            DistributedCacheEntryOptions options = new DistributedCacheEntryOptions
+            {
+                SlidingExpiration = TimeSpan.FromMinutes(30)
+            };
             //almacenamos la collecion dentro de cache redis
             //indicaremos que los datos duraran 30 minutos
 
             //await this.cache.StringSetAsync("cochesfavoritos", jsonCoches, TimeSpan.FromMinutes(30));
-            await this.cache.SetStringAsync("cochesfavoritos", jsonCoches);
+            await this.cache.SetStringAsync("cochesfavoritos", jsonCoches, options);
 
 
         }
@@ -81,7 +85,11 @@ namespace MvcCoreElastiCacheAWS.Services
 
                     string jsonCoches = JsonConvert.SerializeObject(cars);
                     //actualizamos cache redis
-                    await this.cache.SetStringAsync("cochesfavoritos", jsonCoches);
+                    DistributedCacheEntryOptions options = new DistributedCacheEntryOptions
+                    {
+                        SlidingExpiration = TimeSpan.FromMinutes(30)
+                    };
+                    await this.cache.SetStringAsync("cochesfavoritos", jsonCoches, options);
 
 
                 }

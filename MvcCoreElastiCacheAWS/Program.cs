@@ -7,10 +7,11 @@ using System.Diagnostics.Metrics;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+string connectionString = builder.Configuration.GetConnectionString("CacheRedis");
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = "cache-coches.q0786q.ng.0001.use1.cache.amazonaws.com:6379";
-    options.InstanceName = "ElastiCacheExample";
+    options.Configuration = connectionString;
+    options.InstanceName = "cache-coches ";
 });
 
 builder.Services.AddTransient<RepositoryCoches>();

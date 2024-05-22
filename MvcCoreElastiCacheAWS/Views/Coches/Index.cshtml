@@ -44,6 +44,7 @@
             </td>
             <td>
                     <a asp-controller="Coches" asp-action="Details" asp-route-id="@item.IdCoche" class="btn btn-outline-dark">Detalles</a>
+                    <a asp-controller="Coches" asp-action="SeleccionarFavorito" asp-route-idcoche="@item.IdCoche" class="btn btn-outline-danger">Favorito</a>
                     @* @Html.ActionLink("Detalles", "Details", new { id = item.IdCoche }) | *@
       @*           @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
